@@ -14,7 +14,7 @@ class WeatherModel : Codable {
     let currentWeather : currentWeatherModel
     
     class currentWeatherModel : Codable {
-        let time : Double
+        let time : Date
         let summary : String
         let icon : String
         let precipProbability : Double

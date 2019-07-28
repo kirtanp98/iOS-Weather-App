@@ -19,6 +19,7 @@ class ViewController: UIViewController {
                     do {
                         let res = try JSONDecoder().decode(WeatherModel.self, from: data)
                         print(res.latitude)
+                        print(res.longitude)
                     } catch let error {
                         print(error)
                     }
