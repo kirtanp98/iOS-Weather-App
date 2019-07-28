@@ -1,10 +1,4 @@
-//
-//  WeatherModel.swift
-//  Weather App
-//
-//  Created by Kirtan Patel on 7/27/19.
-//  Copyright © 2019 Kirtan Patel. All rights reserved.
-//
+
 
 import Foundation
 
@@ -15,11 +9,12 @@ class WeatherModel : Codable {
     
     class currentWeatherModel : Codable {
         let time : Date
-        let summary : String
-        let icon : String
-        let precipProbability : Double
+        let summary : String = ""
+        let icon : String = ""
+        let precipProbability : Double = 0.0
         let precipitaionType : String?
-        let temperature : Double
+        let temperature : Double = 0.0 //Degrees Celcius
+        let visibility : Double = 0.0 //Kilometers
 
         enum CodingKeys: String, CodingKey {
             case time
