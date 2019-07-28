@@ -13,6 +13,8 @@
 		A06797DB22ED1D0C0071FF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06797DA22ED1D0C0071FF30 /* Assets.xcassets */; };
 		A06797DE22ED1D0C0071FF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06797DC22ED1D0C0071FF30 /* LaunchScreen.storyboard */; };
 		A06797E622ED1D790071FF30 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06797E522ED1D790071FF30 /* WeatherModel.swift */; };
+		A0B08E0622EE61B900F9E83A /* JSONFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B08E0522EE61B900F9E83A /* JSONFetcher.swift */; };
+		A0B08E0822EE640C00F9E83A /* JSONFetcherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B08E0722EE640C00F9E83A /* JSONFetcherDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		A06797DD22ED1D0C0071FF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A06797DF22ED1D0C0071FF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A06797E522ED1D790071FF30 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		A0B08E0522EE61B900F9E83A /* JSONFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFetcher.swift; sourceTree = "<group>"; };
+		A0B08E0722EE640C00F9E83A /* JSONFetcherDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFetcherDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +66,19 @@
 				A06797DA22ED1D0C0071FF30 /* Assets.xcassets */,
 				A06797DC22ED1D0C0071FF30 /* LaunchScreen.storyboard */,
 				A06797DF22ED1D0C0071FF30 /* Info.plist */,
+				A0B08E0922EE64D800F9E83A /* JSONFetcher */,
 				A06797E522ED1D790071FF30 /* WeatherModel.swift */,
 			);
 			path = "Weather App";
+			sourceTree = "<group>";
+		};
+		A0B08E0922EE64D800F9E83A /* JSONFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				A0B08E0522EE61B900F9E83A /* JSONFetcher.swift */,
+				A0B08E0722EE640C00F9E83A /* JSONFetcherDelegate.swift */,
+			);
+			path = JSONFetcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +155,8 @@
 				A06797D622ED1D0A0071FF30 /* ViewController.swift in Sources */,
 				A06797E622ED1D790071FF30 /* WeatherModel.swift in Sources */,
 				A06797D422ED1D0A0071FF30 /* AppDelegate.swift in Sources */,
+				A0B08E0822EE640C00F9E83A /* JSONFetcherDelegate.swift in Sources */,
+				A0B08E0622EE61B900F9E83A /* JSONFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
