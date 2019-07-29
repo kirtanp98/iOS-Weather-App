@@ -4,12 +4,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController, JSONFetcherDelegate {
+class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDelegate {
     
     var jsonFetcher:JSONFetcher?
     var weather:WeatherModel?
-
-class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
@@ -68,5 +66,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(weather!.currentWeather.temperature)
     }
     
-}
 
+}
