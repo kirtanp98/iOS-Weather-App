@@ -1,3 +1,4 @@
 .DS_Store
 Weather App.xcodeproj/xcuserdata/mainz.xcuserdatad/xcschemes/xcschememanagement.plist
 Weather App.xcodeproj/project.xcworkspace/xcuserdata/mainz.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcbkptlist
