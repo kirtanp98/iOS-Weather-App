@@ -2,7 +2,6 @@
 
 import UIKit
 import CoreLocation
-import MapKit
 
 class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDelegate {
     
@@ -20,10 +19,11 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
     }
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
-            checkLocationAuthorization()
             setupLocationManager()
+            checkLocationAuthorization()
+            print(getLatLong())
         } else {
-            // Turn on
+            //tell them to turn on location services
         }
     }
     
@@ -38,14 +38,13 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         print("Location Authorization Check")
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            print(getLatLong())
+            break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
-            checkLocationAuthorization()
         case .restricted:
             break
         case .authorizedAlways:
-            print(getLatLong())
+            break
         case .denied:
             break
         @unknown default:
