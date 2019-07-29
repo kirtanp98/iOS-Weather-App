@@ -12,7 +12,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         checkLocationServices()
         
         
-        let weather = fetchWeather(longitute: 37.8267, latitude: -122.4233)
+//        let weather = fetchWeather(longitute: 37.8267, latitude: -122.4233)
 
         
     }
@@ -21,8 +21,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
             checkLocationAuthorization()
+            setupLocationManager()
         } else {
             // Turn on
         }
@@ -46,7 +46,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         case .restricted:
             break
         case .authorizedAlways:
-            break
+            print(getLatLong())
         case .denied:
             break
         @unknown default:
