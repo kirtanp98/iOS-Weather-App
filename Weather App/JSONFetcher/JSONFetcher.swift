@@ -1,10 +1,4 @@
-//
-//  JSONFetcher.swift
-//  Weather App
-//
-//  Created by Kirtan Patel on 7/28/19.
-//  Copyright © 2019 Kirtan Patel. All rights reserved.
-//
+
 
 import Foundation
 
