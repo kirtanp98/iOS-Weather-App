@@ -2,19 +2,19 @@
 
 import Foundation
 
-public class WeatherModel : Codable {
+public class WeatherModel : Decodable {
     let latitude : Double
     let longitude: Double
     let currentWeather : currentWeatherModel
     
-    public class currentWeatherModel : Codable {
+    public class currentWeatherModel : Decodable {
         let time : Date
-        let summary : String = ""
-        let icon : String = ""
-        let precipProbability : Double = 0.0
-        let precipitaionType : String? = nil
-        let temperature : Double = 0.0 //Degrees Celcius
-        let visibility : Double = 0.0//Kilometers
+        let summary : String
+        let icon : String
+        let precipProbability : Double
+        let precipitaionType : String?
+        let temperature : Double //Degrees Celcius
+        let visibility : Double //Kilometers
 
         enum CodingKeys: String, CodingKey {
             case time
@@ -23,6 +23,7 @@ public class WeatherModel : Codable {
             case precipProbability
             case precipitaionType = "precipType"
             case temperature
+            case visibility
         }
     }
     
