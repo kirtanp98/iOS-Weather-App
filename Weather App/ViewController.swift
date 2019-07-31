@@ -12,10 +12,19 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkLocationServices()
         jsonFetcher = JSONFetcher()
         jsonFetcher?.delegate = self
         jsonFetcher?.fetchWeather(longitute: 40.493630, latitude: -74.504770)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("loaded")
+        checkLocationServices()
+
+        
+
+        
     }
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
@@ -23,7 +32,7 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
             checkLocationAuthorization()
             print(getLatLong())
         } else {
-            //tell them to turn on location services
+            showLocationServicesOffPopUp()
         }
     }
     
@@ -42,12 +51,12 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-//            showLocationDisabledPopUp()
+            showLocationDisabledPopUp()
             break
         case .authorizedAlways:
             break
         case .denied:
-//            showLocationDisabledPopUp()
+            showLocationDisabledPopUp()
             break
         @unknown default:
             break
@@ -62,24 +71,32 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         return [latitude, longitude]
     }
     
-//    TODO
-//    Get error popup working
-//    func showLocationDisabledPopUp() {
-//        let alertController = UIAlertController(title: "Location Access Disabled", message: "Please enable Location Services for auto location", preferredStyle: .alert)
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        alertController.addAction(cancelAction)
-//
-//        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (ACTION) in
-//            if let url = URL(string: UIApplication.openSettingsURLString) {
-//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//            }
-//        }
-//        alertController.addAction(openAction)
-//
-//        self.present(alertController, animated: true, completion: nil)
-//
-//    }
+
+    func showLocationDisabledPopUp() {
+        let alertController = UIAlertController(title: "Location Access Disabled", message: "Please allow Location Services to enable automatic local weather", preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (ACTION) in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(openAction)
+
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func showLocationServicesOffPopUp() {
+        let alertController = UIAlertController(title: "Device Location Services Disabled", message: "Please allow Location Services to enable automatic local weather", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
     
     func didFinishFetching(_ sender: JSONFetcher) {
         weather = jsonFetcher!.weather

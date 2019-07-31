@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Local Weather</string>
+	<string>Location needed to provide accurate weather prediction in your area</string>
 </dict>
 </plist>
