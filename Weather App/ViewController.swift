@@ -3,10 +3,12 @@
 import UIKit
 import CoreLocation
 
+
 class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDelegate {
     
     var jsonFetcher:JSONFetcher?
     var weather:WeatherModel?
+    let userAsked = UserDefaults.standard.bool(forKey: "hasChosen")
     
     let locationManager = CLLocationManager()
     
@@ -17,24 +19,29 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         jsonFetcher?.fetchWeather(longitute: 40.493630, latitude: -74.504770)
     }
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("loaded")
+        print(userAsked)
         checkLocationServices()
-
-        
-
-        
     }
+    
+    
+    
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
             checkLocationAuthorization()
             print(getLatLong())
         } else {
-            showLocationServicesOffPopUp()
+            if userAsked == false {
+                showLocationServicesOffPopUp()
+            }
         }
     }
+    
+    
     
     func setupLocationManager() {
         locationManager.delegate = self
@@ -42,6 +49,8 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         locationManager.startUpdatingLocation()
         print("Location Manger Setup")
     }
+    
+    
     
     func checkLocationAuthorization() {
         print("Location Authorization Check")
@@ -51,17 +60,31 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            showLocationDisabledPopUp()
+            if userAsked == false {
+                showLocationDisabledPopUp()
+            }
             break
         case .authorizedAlways:
             break
         case .denied:
-            showLocationDisabledPopUp()
+            if userAsked == false {
+                showLocationDisabledPopUp()
+            }
             break
         @unknown default:
             break
         }
     }
+    
+    
+    
+    func userChoseAccess() {
+        print("Chose Access")
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "hasChosen")
+    }
+
+    
     
     func getLatLong() -> Array<Any> {
         let currentLocation = locationManager.location
@@ -72,6 +95,7 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
     }
     
 
+    
     func showLocationDisabledPopUp() {
         let alertController = UIAlertController(title: "Location Access Disabled", message: "Please allow Location Services to enable automatic local weather", preferredStyle: .actionSheet)
 
@@ -84,19 +108,21 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
             }
         }
         alertController.addAction(openAction)
-
         self.present(alertController, animated: true, completion: nil)
-
+        userChoseAccess()
     }
+    
+    
     
     func showLocationServicesOffPopUp() {
         let alertController = UIAlertController(title: "Device Location Services Disabled", message: "Please allow Location Services to enable automatic local weather", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-        
         self.present(alertController, animated: true, completion: nil)
-        
+        userChoseAccess()
     }
+    
+    
     
     func didFinishFetching(_ sender: JSONFetcher) {
         weather = jsonFetcher!.weather
