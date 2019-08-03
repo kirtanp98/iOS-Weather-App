@@ -2,6 +2,7 @@
 
 import UIKit
 import CoreLocation
+import Foundation
 
 
 class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDelegate {
@@ -35,9 +36,7 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
             checkLocationAuthorization()
             print(getLatLong())
         } else {
-            if userAsked == false {
-                showLocationServicesOffPopUp()
-            }
+            if userAsked == false { showLocationServicesOffPopUp() }
         }
     }
     
@@ -60,16 +59,12 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            if userAsked == false {
-                showLocationDisabledPopUp()
-            }
+            if userAsked == false { showLocationDisabledPopUp() }
             break
         case .authorizedAlways:
             break
         case .denied:
-            if userAsked == false {
-                showLocationDisabledPopUp()
-            }
+            if userAsked == false { showLocationDisabledPopUp() }
             break
         @unknown default:
             break
