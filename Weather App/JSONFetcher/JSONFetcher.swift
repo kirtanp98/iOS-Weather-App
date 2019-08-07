@@ -11,8 +11,8 @@ class JSONFetcher {
         self.weather = nil
     }
     
-    func fetchWeather(longitute: Double, latitude : Double) {
-        let urlString = "https://api.darksky.net/forecast/6fbcf7b85b9cd3021c8a39883c63389d/\(longitute),\(latitude)"
+    func fetchWeather(longitute: Double, latitude : Double, apikey: String) {
+        let urlString = "https://api.darksky.net/forecast/\(apikey)/\(longitute),\(latitude)"
         
         if let url = URL(string: urlString){
             URLSession.shared.dataTask(with: url) { data, response, error in
