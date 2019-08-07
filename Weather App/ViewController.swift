@@ -17,7 +17,7 @@ class ViewController: UIViewController, JSONFetcherDelegate, CLLocationManagerDe
         super.viewDidLoad()
         jsonFetcher = JSONFetcher()
         jsonFetcher?.delegate = self
-        jsonFetcher?.fetchWeather(longitute: 40.493630, latitude: -74.504770)
+        jsonFetcher?.fetchWeather(longitute: 40.493630, latitude: -74.504770, apikey: "YOU_API_KEY")
     }
     
     
